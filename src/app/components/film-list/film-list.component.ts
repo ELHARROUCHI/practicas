@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FilmService } from '../services/film.service';
+
 @Component({
   selector: 'zh-film-list',
   templateUrl: './film-list.component.html',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilmListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private filmSrv: FilmService) { }
 
   ngOnInit() {
   }
+
+
 
 }
