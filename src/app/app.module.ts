@@ -15,6 +15,6 @@ import { FilmComponent } from './components/film/film.component';
     BrowserModule
   ],
   providers: [],
-  bootstrap: [FilmComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
