@@ -11,7 +11,7 @@ import { Film } from './../../shared/models/film.model';
 import { FilmService } from './film.service';
 
 /**
- * 
+ *
  */
 @Injectable()
 export class FilmResoveService implements Resolve<Film[]> {
@@ -19,7 +19,7 @@ export class FilmResoveService implements Resolve<Film[]> {
   constructor(private filmSrv: FilmService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Film[]> {
-    return this.filmSrv.getFilms$(route.params['keyword']);
+    return this.filmSrv.getFilmsByTitle$(route.params['keyword']);
   }
 
 }

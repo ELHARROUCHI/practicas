@@ -20,13 +20,13 @@ export class FilmService {
   /**
    * searching films by keyword
    */
-  getFilms$(keyword: string): Observable<Film[]> {
-    const url  = `http://www.omdbapi.com/?apikey=${this.API_KEY}&s=${keyword}`;
+  getFilmsByTitle$(keyword: string): Observable<Film[]> {
+    const url = `http://www.omdbapi.com/?apikey=${this.API_KEY}&s=${keyword}`;
     return this.http
-    .get(url)
-    .pipe(
-      map((result: any) => result.Search)
-    );
+      .get<Film[]>(url)
+      .pipe(
+        map((result: any) => result.Search)
+      );
   }
 
 }
