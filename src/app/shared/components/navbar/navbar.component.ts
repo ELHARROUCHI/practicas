@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
@@ -12,7 +13,10 @@ import { LoadFilmsByTitle } from '../../store/film/film.action';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private store: Store<AppState>) { }
+  constructor(
+    private router: Router,
+    private store: Store<AppState>
+    ) { }
 
   ngOnInit() {
   }
@@ -25,6 +29,8 @@ export class NavbarComponent implements OnInit {
   findByTitle(title: string) {
     const action = new LoadFilmsByTitle(title);
     this.store.dispatch(action);
+
+    this.router.navigate(['/films']);
   }
 
 }

@@ -15,12 +15,12 @@ export class FilmEffect {
   public getFilmsByTitle$ = this.actions$
     .pipe(
       ofType(LOAD_FILMS_BY_TITLE),
-      map((action: LoadFilmsByTitle) => action.title),
-      filter((title: string) => title !== undefined),
+      map((action: LoadFilmsByTitle): string => action.title),
+      filter((title: string): boolean => title !== undefined),
       switchMap((title: string) => this.filmSrv
         .getFilmsByTitle$(title)
         .pipe(
-          map((films: Film[]) => new LoadFilmsByTitleSeccess(films)),
+          map((films: Film[]) => new LoadFilmsByTitleSeccess(films || [])),
           catchError((error: any) => of(new LoadFilmsByTitleFail(error)))
         )
       )
