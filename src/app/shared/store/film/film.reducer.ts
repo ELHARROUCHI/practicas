@@ -1,36 +1,36 @@
-import { AppState } from './app-state';
+import { FilmState } from './film.state';
 import {
   LOAD_FILMS_BY_TITLE,
   LOAD_FILMS_BY_TITLE_SUCCESS,
   FilmActions,
   LOAD_FILMS_BY_TITLE_FAIL
 } from './film.action';
-import { initialState } from './app-state';
+import { initialState } from './film.state';
 
-export const FilmReducer = (state: AppState = initialState, action: FilmActions): AppState => {
+export const FilmReducer = (filmState: FilmState = initialState, action: FilmActions): FilmState => {
 
   switch (action.type) {
     case LOAD_FILMS_BY_TITLE:
       return {
-        ...state,
+        ...filmState,
         loading: true
       };
     case LOAD_FILMS_BY_TITLE_SUCCESS:
       return {
-        ...state,
+        ...filmState,
         loading: false,
         loaded: true,
         films: [...action.films]
       };
     case LOAD_FILMS_BY_TITLE_FAIL:
       return {
-        ...state,
+        ...filmState,
         loading: false,
         loaded: false,
         error: action.payload
       };
     default:
-      return state;
+      return filmState;
   }
 
-}
+};

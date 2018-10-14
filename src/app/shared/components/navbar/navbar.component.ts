@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
-import { AppState } from '../../store/app-state';
-import { LoadFilmsByTitle } from '../../store/film.action';
+import { AppState } from '../../store/app.reducer';
+import { LoadFilmsByTitle } from '../../store/film/film.action';
 
 @Component({
   selector: 'zh-navbar',

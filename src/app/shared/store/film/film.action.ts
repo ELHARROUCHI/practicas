@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Film } from '../models/film.model';
+import { Film } from '../../models/film.model';
 
 export const LOAD_FILMS_BY_TITLE = '[Get Films] obtain films by title';
 export const LOAD_FILMS_BY_TITLE_SUCCESS = '[Get Films] obtain films by title, success';

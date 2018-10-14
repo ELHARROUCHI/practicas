@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
-import { AppState } from '../../shared/store/app-state';
 import { Film } from '../../shared/models/film.model';
-import { getFilms } from '../../shared/store/film.selector';
+import { getFilmsState } from '../../shared/store/film/film.selector';
+import { FilmState } from 'src/app/shared/store/film/film.state';
 
 @Component({
   selector: 'zh-film-list',
@@ -18,13 +18,15 @@ export class FilmListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<FilmState>
   ) { }
 
   ngOnInit() {
     this.store
-      .select(getFilms)
-      .subscribe((films: Film[]) => this.films = films);
+    .pipe(
+      select(getFilmsState)
+    )
+      .subscribe((filmState: FilmState) => this.films = filmState.films);
   }
 
   /**
@@ -32,9 +34,32 @@ export class FilmListComponent implements OnInit {
    *
    * @param filmId movie id
    */
-  viewDetals(filmId: string) {
+  viewDetals(filmId: string): void {
     const commands: any[] = ['/films', filmId];
     this.router.navigate(commands);
+  }
+
+  /**
+   * save film as favorite
+   *
+   * @param film film object
+   */
+  save(film: Film): void {
+    localStorage.setItem(film.imdbID, JSON.stringify(film));
+  }
+
+  remove(film: Film): void {
+    localStorage.removeItem(film.imdbID);
+  }
+
+  /**
+   * check if it favorate
+   *
+   * @param film film
+   */
+  isFavorate(film: Film): boolean {
+    return Object.keys(localStorage)
+      .filter((id: string) => film.imdbID === id).length > 0;
   }
 
 }

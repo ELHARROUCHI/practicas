@@ -1,16 +1,16 @@
-import { Film } from './../models/film.model';
+import { Film } from '../../models/film.model';
 
 /**
- * application state
+ * film state
  */
-export interface AppState {
+export interface FilmState {
   films: Film[];
   loaded: boolean;
   loading: boolean;
   error: any;
 }
 
-export const initialState: AppState = {
+export const initialState: FilmState = {
   films: [],
   loaded: false,
   loading: false,

@@ -1,15 +1,15 @@
 <div class="card-columns">
-    <div class="card" *ngFor="let film of films; let i = index">
-      <img class="card-img-top" [src]="film?.Poster" [alt]="film?.Title">
-      <div class="card-body">
-        <h5 class="card-title">{{film?.Title}}</h5>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted" (click)="viewDetals(film.imdbID)">View</small>
-        <small class="to-right">
-          <img src="./../../../assets/pictures/star_true.png">
-          <img src="./../../../assets/pictures/star_false.png">
-        </small>
-      </div>
+  <div class="card" *ngFor="let film of films; let i = index">
+    <img class="card-img-top" [src]="film?.Poster" [alt]="film?.Title">
+    <div class="card-body">
+      <h5 class="card-title">{{film?.Title}}</h5>
+    </div>
+    <div class="card-footer">
+      <small (click)="viewDetals(film.imdbID)">View</small>
+      <small class="to-right">
+        <img src="./../../../assets/pictures/star_true.png" class="pointer" (click)="remove(film)" *ngIf="isFavorate(film)">
+        <img src="./../../../assets/pictures/star_false.png" class="pointer" (click)="save(film)" *ngIf="!isFavorate(film)">
+      </small>
     </div>
   </div>
+</div>
