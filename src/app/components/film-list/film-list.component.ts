@@ -45,9 +45,15 @@ export class FilmListComponent implements OnInit {
    * @param film film object
    */
   save(film: Film): void {
-    localStorage.setItem(film.imdbID, JSON.stringify(film));
+    if (!localStorage.hasOwnProperty(film.imdbID)) {
+      localStorage.setItem(film.imdbID, JSON.stringify(film));
+    }
   }
 
+  /**
+   *
+   * @param film movie
+   */
   remove(film: Film): void {
     localStorage.removeItem(film.imdbID);
   }

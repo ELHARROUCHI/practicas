@@ -4,9 +4,9 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { switchMap, map, catchError, filter } from 'rxjs/operators';
 
-import { FilmService } from '../../../components/services/film.service';
-import { LOAD_FILMS_BY_TITLE, LoadFilmsByTitle, LoadFilmsByTitleSeccess, LoadFilmsByTitleFail } from './film.action';
 import { Film } from '../../models/film.model';
+import { FilmService } from '../../services/film.service';
+import { LOAD_FILMS_BY_TITLE, LoadFilmsByTitle, LoadFilmsByTitleSeccess, LoadFilmsByTitleFail } from './film.action';
 
 @Injectable()
 export class FilmEffect {

@@ -14,13 +14,15 @@ import { FilmEffect } from './shared/store/film/film.effect';
 import { FilmListComponent } from './components/film-list/film-list.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { environment } from '../environments/environment';
+import { FavoriteComponent } from './components/favorite/favorite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilmComponent,
     FilmListComponent,
-    NavbarComponent
+    NavbarComponent,
+    FavoriteComponent
   ],
   imports: [
     AppRoutingModule,
