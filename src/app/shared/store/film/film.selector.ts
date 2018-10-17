@@ -1,7 +1,4 @@
 import { createFeatureSelector } from '@ngrx/store';
+import { AppState } from '..';
 
-import { FilmState } from './film.state';
-
-export const getFilmsState = createFeatureSelector<FilmState>('filmsState');
-
-
+export const getFilmState = createFeatureSelector<AppState>('filmState');

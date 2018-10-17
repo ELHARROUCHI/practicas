@@ -7,7 +7,7 @@ import {
 } from './film.action';
 import { initialState } from './film.state';
 
-export const FilmReducer = (filmState: FilmState = initialState, action: FilmActions): FilmState => {
+export function filmReducer(filmState: FilmState = initialState, action: FilmActions) {
 
   switch (action.type) {
     case LOAD_FILMS_BY_TITLE:
@@ -33,4 +33,4 @@ export const FilmReducer = (filmState: FilmState = initialState, action: FilmAct
       return filmState;
   }
 
-};
+}
