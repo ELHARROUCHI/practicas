@@ -16,10 +16,9 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     private store: Store<AppState>
-    ) { }
+  ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   /**
    * find movies by title
@@ -29,7 +28,6 @@ export class NavbarComponent implements OnInit {
   findByTitle(title: string) {
     const action = new LoadFilmsByTitle(title);
     this.store.dispatch(action);
-
     this.router.navigate(['/films']);
   }
 

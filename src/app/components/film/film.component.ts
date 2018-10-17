@@ -1,14 +1,12 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { Store, select } from '@ngrx/store';
-import { first, switchMap, map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { switchMap, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { AppState } from '../../shared/store/app.reducer';
 import { Film } from '../../shared/models/film.model';
-import { FilmState } from 'src/app/shared/store/film/film.state';
-import { getFilmsState } from '../../shared/store/film/film.selector';
 
 @Component({
   selector: 'zh-film',
@@ -35,9 +33,7 @@ export class FilmComponent implements OnInit {
         }),
         switchMap((id: string) => this.store
           .pipe(
-            select(getFilmsState),
-            first(),
-            map((filmState: FilmState) => filmState.films.filter((film: Film) => film.imdbID === id)),
+            map((state: AppState) => state.filmState.films.filter((film: Film) => film.imdbID === id)),
             switchMap((films: Film[]) => {
               if (films[0]) {
                 return of(films[0]);

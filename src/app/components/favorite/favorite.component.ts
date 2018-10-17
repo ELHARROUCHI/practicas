@@ -26,7 +26,10 @@ export class FavoriteComponent implements OnInit {
 
     for (const key in localStorage) {
       if (localStorage.hasOwnProperty(key)) {
-        films.push(JSON.parse(localStorage.getItem(key)));
+        const obj = JSON.parse(localStorage.getItem(key));
+        if ('Title' in  obj) {
+          films.push(obj);
+        }
       }
     }
 
@@ -38,7 +41,7 @@ export class FavoriteComponent implements OnInit {
    *
    * @param filmId movie id
    */
-  viewDetals(filmId: string): void {
+  viewDetails(filmId: string): void {
     const commands: any[] = ['/films', filmId];
     this.router.navigate(commands);
   }

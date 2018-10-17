@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { Film } from '../../shared/models/film.model';
-import { getFilmsState } from '../../shared/store/film/film.selector';
-import { FilmState } from 'src/app/shared/store/film/film.state';
+import { AppState } from '../../shared/store';
 
 @Component({
   selector: 'zh-film-list',
@@ -18,15 +17,12 @@ export class FilmListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private store: Store<FilmState>
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
     this.store
-    .pipe(
-      select(getFilmsState)
-    )
-      .subscribe((filmState: FilmState) => this.films = filmState.films);
+      .subscribe((state: AppState) => this.films = state.filmState.films);
   }
 
   /**
@@ -34,7 +30,7 @@ export class FilmListComponent implements OnInit {
    *
    * @param filmId movie id
    */
-  viewDetals(filmId: string): void {
+  viewDetails(filmId: string): void {
     const commands: any[] = ['/films', filmId];
     this.router.navigate(commands);
   }
