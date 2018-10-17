@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { switchMap, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 

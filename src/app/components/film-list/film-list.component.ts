@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import { Film } from '../../shared/models/film.model';
 import { AppState } from '../../shared/store';
+import { getFilmState } from '../../shared/store/film/film.selector';
+import { FilmState } from 'src/app/shared/store/film/film.state';
+import { switchMap, filter, toArray, flatMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'zh-film-list',
@@ -22,7 +25,11 @@ export class FilmListComponent implements OnInit {
 
   ngOnInit() {
     this.store
-      .subscribe((state: AppState) => this.films = state.filmState.films);
+      .pipe(
+        select(getFilmState),
+        filter((filmState: FilmState) => !!filmState.films && !!filmState.films.length)
+      )
+      .subscribe((state: any) => this.films = state.films );
   }
 
   /**

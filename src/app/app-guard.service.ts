@@ -2,10 +2,12 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { switchMap } from 'rxjs/operators';
 
 import { AppState } from './shared/store';
+import { getLoginState } from './shared/store/login/login.selector';
+import { UserLoginState } from './shared/store/login/login.state';
 
 @Injectable()
 export class AppGuard implements CanActivate {
@@ -15,7 +17,8 @@ export class AppGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.store
       .pipe(
-        switchMap((mState: AppState) => of(!!mState.userLoginState.user))
+        select(getLoginState),
+        switchMap((loginState: UserLoginState) => of(!!loginState.user))
       );
   }
 
