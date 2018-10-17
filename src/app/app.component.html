@@ -1,1 +1,9 @@
-it work!
+<zh-navbar *ngIf="isLogged"></zh-navbar>
+
+<div class="container">
+  <section class="mt-3 mb-5 pb-5" *ngIf="isLogged">
+    <router-outlet></router-outlet>
+  </section>
+
+  <zh-login class="mt-5" *ngIf="!isLogged"></zh-login>
+</div>

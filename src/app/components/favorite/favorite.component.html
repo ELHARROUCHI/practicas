@@ -1,0 +1,11 @@
+<div class="card-columns">
+    <div class="card" *ngFor="let film of films; let i = index">
+      <img class="card-img-top" [src]="film?.Poster" [alt]="film?.Title">
+      <div class="card-body">
+        <h5 class="card-title">{{film?.Title}}</h5>
+      </div>
+      <div class="card-footer">
+          <small class="pointer" (click)="viewDetails(film.imdbID)">View</small>
+      </div>
+    </div>
+  </div>

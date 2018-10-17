@@ -1,0 +1,19 @@
+<h1>{{film?.Title}}
+  <small>{{film?.Year}}</small>
+</h1>
+<hr>
+
+<div class="row">
+  <div class="col-4">
+    <img [src]="film?.Poster" class="img-fluid" [alt]="film?.Title">
+    <br>
+    <br>
+    <a [routerLink]="['/films']" class="btn btn-outline-danger btn-block">
+      Back
+    </a>
+  </div>
+
+  <div class="col-8">
+    <h3>{{film?.Title}} - {{film?.Type}}</h3>
+  </div>
+</div>
